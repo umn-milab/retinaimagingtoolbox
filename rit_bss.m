@@ -51,8 +51,8 @@ function [PCA_coeff, PCA_com_image, ICA_com_image, ICA_coeff, explained_cumulati
 %   Transactions on Medical Imaging, 2020. [Under Review]
 %
 %   If you use the fastica algorithm, please CITE ALSO:
-%   Hyvarinen A and Oja E, ìA Fast Fixed-Point Alogrithm for Independent
-%   Component Analysis,î Neural Computation, vol. 9, pp. 1483ñ1492, 1997.
+%   Hyvarinen A and Oja E, ‚ÄúA Fast Fixed-Point Alogrithm for Independent
+%   Component Analysis,‚Äù Neural Computation, vol. 9, pp. 1483‚Äì1492, 1997.
 %
 %   Copyright 2020 Ivana Labounkova(1,2), Rene Labounek(2), Igor Nestrasil(2,3),
 %       Jan Odstrcilik(1), Ralf P. Tornow(4), Radim Kolar(1)
@@ -60,6 +60,20 @@ function [PCA_coeff, PCA_com_image, ICA_com_image, ICA_coeff, explained_cumulati
 %   (2) Division of Clinical Behavioral Neuroscience, Department of Pediatrics, University of Minnesota, Minneapolis, USA
 %   (3) Center for Magnetic Resonance Research, Department of Radiology, University of Minnesota, Minneapolis, USA
 %   (4) DEpartment of Ophthalmology, Friedrich-Alexander University of Erlangen-Nuremberg, Erlangen, Germany
+%
+% This file is part of retinaimagingtoolbox available at: https://github.com/ivanalabounkova/retinaimagingtoolbox
+%
+% retinaimagingtoolbox is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or any later version.
+%
+% retinaimagingtoolbox is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with retinaimagingtoolbox.  If not, see <https://www.gnu.org/licenses/>.
 
 %%
    [xdim,ydim,frames] = size(image_sequence);
