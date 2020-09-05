@@ -61,19 +61,19 @@ function [PCA_coeff, PCA_com_image, ICA_com_image, ICA_coeff, explained_cumulati
 %   (3) Center for Magnetic Resonance Research, Department of Radiology, University of Minnesota, Minneapolis, USA
 %   (4) Department of Ophthalmology, Friedrich-Alexander University of Erlangen-Nuremberg, Erlangen, Germany
 %
-%   This file is part of retinaimagingtoolbox available at: https://github.com/ivanalabounkova/retinaimagingtoolbox
+%   This file is part of Retina Imaging Toolbox (RIT) available at: https://github.com/ivanalabounkova/retinaimagingtoolbox
 %
-%   retinaimagingtoolbox is free software: you can redistribute it and/or modify
+%   Retina Imaging Toolbox is free software: you can redistribute it and/or modify
 %   it under the terms of the GNU General Public License as published by
 %   the Free Software Foundation, either version 3 of the License, or any later version.
 %
-%   retinaimagingtoolbox is distributed in the hope that it will be useful,
+%   Retina Imaging Toolbox is distributed in the hope that it will be useful,
 %   but WITHOUT ANY WARRANTY; without even the implied warranty of
 %   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 %   GNU General Public License for more details.
 %
 %   You should have received a copy of the GNU General Public License
-%   along with retinaimagingtoolbox.  If not, see <https://www.gnu.org/licenses/>.
+%   along with Retina Imaging Toolbox.  If not, see <https://www.gnu.org/licenses/>.
 
 %%
    [xdim,ydim,frames] = size(image_sequence);
