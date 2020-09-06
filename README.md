@@ -1,11 +1,38 @@
 # Retina Imaging Toolbox (RIT)
 
-Open-source MATLAB/Octave software library for **dynamic or static retina image analysis**, incluging:
+**ANYONE CAN CONTRIBUTE** to the open-source MATLAB/Octave software library for **automated dynamic or static retina image analysis**. The library includes:
 - image registration `(Kolar et al. 2016)`
 - optic disc or vessel segmentation tools `(Odstrcilik et al. 2013)`
 - blind source separation (i.e. principal component analysis - PCA, independent component analysis - ICA) `(Labounkova et al. 2019; Labounkova et al. 2020)`
 - one-dimensional spike noise suppresion K-means filter `(Labounkova et al. 2020)`
 - automatic detection of control points in periodic time-courses `(Labounkova et al. 2020)`
+
+In the near future, we plan to rewrite RIT into a paralell and separate full python implementation and build graphical interface for comfortable and easy result visualization.
+
+
+## Image registration
+
+[In Progress]
+
+## Optic disc segmentation
+
+[In Progress]
+
+## Vessel segemntation
+
+[In Progress]
+
+## Blind source separation
+
+[In Progress]
+
+## K-means filter for spike noise suppression
+
+[In Progress]
+
+## Time-course morphology analysis via control points
+
+[In Progress]
 
 ## References
 Kolar, R., Tornow, R. P., Odstrcilik, J., & Liberdova, I. (2016). Registration of retinal sequences from new video-ophthalmoscopic camera. *Biomedical Engineering Online*, 15(1), 57.
