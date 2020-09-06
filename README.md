@@ -12,6 +12,6 @@ Kolar, R., Tornow, R. P., Odstrcilik, J., & Liberdova, I. (2016). Registration o
 
 Labounkova, I., Labounek, R., Nestrasil, I., Odstrcilik, J., Tornow, R.P., & Kolar, R. (2020). Blind Source Separation of Retinal Pulsatile Patterns in Optic Nerve Head Video-Recordings. *IEEE Transactions on Medical Imaging* [Revised; Under review]
 
-Labounkova, I., Labounek, R., Odstrcilik, J., Hracho, M., Nestrasil, I., Tornow, R. P., & Kolar, R. (2019). Blind Source Separation of Different Retinal Pulsatile Patterns from Simultaneous Long-term Binocular Ophthalmoscopic Video-records. In 2019 41st Annual International Conference of the IEEE Engineering in Medicine and Biology Society, 4729-4732.
+Labounkova, I., Labounek, R., Odstrcilik, J., Hracho, M., Nestrasil, I., Tornow, R. P., & Kolar, R. (2019). Blind Source Separation of Different Retinal Pulsatile Patterns from Simultaneous Long-term Binocular Ophthalmoscopic Video-records. In *41st Annual International Conference of the IEEE Engineering in Medicine and Biology Society*, 4729-4732.
 
 Odstrcilik, J., Kolar, R., Budai, A., Hornegger, J., Jan, J., Gazarek, J., ... & Angelopoulou, E. (2013). Retinal vessel segmentation by improved matched filtering: evaluation on a new high-resolution fundus image database. *IET Image Processing*, 7(4), 373-383.
