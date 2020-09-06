@@ -18,7 +18,7 @@ In the near future, we plan to rewrite RIT into a paralell and separate full pyt
 
 [In Progress]
 
-## Vessel segemntation
+## Vessel segementation
 
 [In Progress]
 
