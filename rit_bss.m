@@ -1,10 +1,10 @@
 function [PCA_coeff, PCA_com_image, ICA_com_image, ICA_coeff, explained_cumulative] = ...
     rit_bss(image_sequence, ncomponents, varargin)
-%SPATIALBSS estimates spatial blind source separation of an aligned video recording (i.e. 3D array)
+%RIT_BSS estimates spatial blind source separation of an aligned video recording (i.e. 3D array)
 %   via principal component analysis and independent component analysis
 %
 %   [PCA_coeff, PCA_com_image, ICA_com_image, ICA_coeff, explained_cumulative] = ...
-%       SPATIALBSS(image_sequence, ncomponents, varargin)
+%       RIT_BSS(image_sequence, ncomponents, varargin)
 %       estimates ncomponets spatial principal components PCA_com_image and their timecourses PCA_coeff,
 %       ncomponents spatial independent components ICA_com_image and their timecourses ICA_coeff
 %       and percentils of cumulative explained data variability explained_cumulative. 
@@ -16,18 +16,18 @@ function [PCA_coeff, PCA_com_image, ICA_com_image, ICA_coeff, explained_cumulati
 %   ncomponents is a positive integer <= size(image_sequence,3)
 %
 %   OPTIONAL INPUTS:
-%   SPATIALBSS(image_sequence, ncomponents, HPf) where HPf is a two value row vector defining
+%   RIT_BSS(image_sequence, ncomponents, HPf) where HPf is a two value row vector defining
 %   parameters of a high-pass filter of a timecourse of each pixel. First
 %   vector value is the video temporal sampling frequency (i.e. frame rate or fps).
 %   Second vector value is the cut-off frequency in Hz units.
 %   Default value is set to [0,0] which means the high-pass filtering is off.
 %
-%   SPATIALBSS(image_sequence, ncomponents, HPf, Mask) where Mask is a
+%   RIT_BSS(image_sequence, ncomponents, HPf, Mask) where Mask is a
 %   logical matrix or black & white image of type double defining region
 %   of interest where the blind source separation is estimated.
 %   Default value is set to the whole field of view:
 %
-%   SPATIALBSS(image_sequence, ncomponents, HPf, Mask, N) where N is a binary
+%   RIT_BSS(image_sequence, ncomponents, HPf, Mask, N) where N is a binary
 %   operator of value 0 or 1 deciding whether timecourse normalization of each 
 %   pixel is (value 1) or is not (value 0) normalized to mean = 0 and standard 
 %   deviation = 1.
@@ -37,7 +37,7 @@ function [PCA_coeff, PCA_com_image, ICA_com_image, ICA_coeff, explained_cumulati
 %
 %   EXAMPLE:
 %   [PCA_coeff, PCA_com_image, ICA_com_image, ICA_coeff, explained_cumulative] = ...
-%       spatialbss(image_sequence, 4, [25 0.667],Mask,1);
+%       rit_bss(image_sequence, 4, [25 0.667],Mask,1);
 %
 %   COMPULSORY TOOLBOX:
 %   To run the fastica command, the fastica algorithm is needed to download and 
