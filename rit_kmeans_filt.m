@@ -34,7 +34,7 @@ function inty = rit_kmeans_filt(input,posnon)
     if posnon == 1
         grd(1)=0;
         grd(end)=0;
-    else
+    elseif posnon > 1
         grd(1:posnon)=0;
         grd(end-posnon+1:end)=0;
     end
