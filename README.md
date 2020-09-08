@@ -1,10 +1,12 @@
 # Retina Imaging Toolbox (RIT)
 
 **ANYONE CAN CONTRIBUTE** to the open-source MATLAB/Octave software library for **automated dynamic or static retina image analysis**. The library includes:
+- import of standard video file formats (e.g. .avi, .mp4, .mkv, etc.) into 3D double array variable 
 - image registration `(Kolar et al. 2016)`
 - blind source separation (i.e. principal component analysis - PCA, independent component analysis - ICA) `(Labounkova et al. 2019; Labounkova et al. 2020)`
 - one-dimensional spike noise suppresion K-means filter `(Labounkova et al. 2020)`
 - automatic detection of control points in periodic time-courses `(Labounkova et al. 2020)`
+- visualization of spatial color-coded statistical parametric map over a retina anatomy background image
 
 In the near future, we plan to rewrite RIT into a paralell and separate full python implementation and build graphical interface for comfortable and easy result visualization.
 
