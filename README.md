@@ -36,6 +36,6 @@ Kolar, R., Tornow, R. P., Odstrcilik, J., & Liberdova, I. (2016). Registration o
 
 Labounkova, I., Labounek, R., Nestrasil, I., Odstrcilik, J., Tornow, R.P., & Kolar, R. (2020). Blind Source Separation of Retinal Pulsatile Patterns in Optic Nerve Head Video-Recordings. *IEEE Transactions on Medical Imaging*, DOI: [10.1109/TMI.2020.3039917](https://ieeexplore.ieee.org/document/9269462) [In Press]
 
-Labounkova, I., Labounek, R., Odstrcilik, J., Hracho, M., Nestrasil, I., Tornow, R. P., & Kolar, R. (2019). Blind Source Separation of Different Retinal Pulsatile Patterns from Simultaneous Long-term Binocular Ophthalmoscopic Video-records. In *41st Annual International Conference of the IEEE Engineering in Medicine and Biology Society*, 4729-4732.
+Labounkova, I., Labounek, R., Odstrcilik, J., Hracho, M., Nestrasil, I., Tornow, R. P., & Kolar, R. (2019). Blind Source Separation of Different Retinal Pulsatile Patterns from Simultaneous Long-term Binocular Ophthalmoscopic Video-records. In *41st Annual International Conference of the IEEE Engineering in Medicine and Biology Society*, 4729-4732. DOI: [10.1109/EMBC.2019.8857560](https://ieeexplore.ieee.org/document/8857560)
 
 
