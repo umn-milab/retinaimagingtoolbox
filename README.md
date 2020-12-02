@@ -32,7 +32,7 @@ In the near future, we plan to rewrite RIT into a paralell and separate full pyt
 [In Progress]
 
 ## References
-Kolar, R., Tornow, R. P., Odstrcilik, J., & Liberdova, I. (2016). Registration of retinal sequences from new video-ophthalmoscopic camera. *Biomedical Engineering Online*, 15(1), 57.
+Kolar, R., Tornow, R. P., Odstrcilik, J., & Liberdova, I. (2016). Registration of retinal sequences from new video-ophthalmoscopic camera. *Biomedical Engineering Online*, 15(1), 57. DOI: [10.1186/s12938-016-0191-0](https://biomedical-engineering-online.biomedcentral.com/articles/10.1186/s12938-016-0191-0)
 
 Labounkova, I., Labounek, R., Nestrasil, I., Odstrcilik, J., Tornow, R.P., & Kolar, R. (2020). Blind Source Separation of Retinal Pulsatile Patterns in Optic Nerve Head Video-Recordings. *IEEE Transactions on Medical Imaging*, DOI: [10.1109/TMI.2020.3039917](https://ieeexplore.ieee.org/document/9269462) [In Press]
 
