@@ -24,8 +24,8 @@ clear all;
 close all;
 clc;
 %% INPUT VIDEO
-dirname = 'C:\Users\Ivanka\Documents\retina\RIT_example'; %Folder path where the input video is stored.
-fname = 'Study_02_00040_02_R.avi'; % Input video filename.
+dirname = 'C:\Users\User\Videos'; %Folder path where the input video is stored.
+fname = 'RetinaVideo.avi'; % Input video filename.
 % Example of non-aligned input video (RetinaVideo.avi) you can download at: https://github.com/ivanalabounkova/retinaimagingtoolbox-data
 fnamepath = fullfile(dirname, fname);
 %% RIT INITIALIZATION
