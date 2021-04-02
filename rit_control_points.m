@@ -1,6 +1,6 @@
 function [control_points, s_out] = rit_control_points(s,fps)
 %% HELP
-
+%
 %   CITE AS:
 %   Labounkova I, Labounek R, Nestrasil I, Odstrcilik J, Tornow R P, Kolar R, (2021)
 %   "Blind Source Separation of Retinal Pulsatile Patterns in Optic Nerve Head
