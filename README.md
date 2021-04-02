@@ -46,8 +46,10 @@ In the near future, we plan to rewrite RIT into a paralell and separate full pyt
 ## References
 Kolar, R., Tornow, R. P., Odstrcilik, J., & Liberdova, I. (2016). Registration of retinal sequences from new video-ophthalmoscopic camera. *Biomedical Engineering Online*, 15(1), 57. DOI: [10.1186/s12938-016-0191-0](https://biomedical-engineering-online.biomedcentral.com/articles/10.1186/s12938-016-0191-0)
 
-Labounkova, I., Labounek, R., Nestrasil, I., Odstrcilik, J., Tornow, R.P., & Kolar, R. (2020). Blind Source Separation of Retinal Pulsatile Patterns in Optic Nerve Head Video-Recordings. *IEEE Transactions on Medical Imaging*, DOI: [10.1109/TMI.2020.3039917](https://ieeexplore.ieee.org/document/9269462) [In Press]
+Labounkova, I., Labounek, R., Nestrasil, I., Odstrcilik, J., Tornow, R.P., & Kolar, R. (2021). Blind Source Separation of Retinal Pulsatile Patterns in Optic Nerve Head Video-Recordings. *IEEE Transactions on Medical Imaging*, 40(3), 852-864 DOI: [10.1109/TMI.2020.3039917](https://ieeexplore.ieee.org/document/9269462)
 
 Labounkova, I., Labounek, R., Odstrcilik, J., Hracho, M., Nestrasil, I., Tornow, R. P., & Kolar, R. (2019). Blind Source Separation of Different Retinal Pulsatile Patterns from Simultaneous Long-term Binocular Ophthalmoscopic Video-records. In *41st Annual International Conference of the IEEE Engineering in Medicine and Biology Society*, 4729-4732. DOI: [10.1109/EMBC.2019.8857560](https://ieeexplore.ieee.org/document/8857560)
+
+Hyvarinen, A., Oja, E. (1997). A Fast Fixed-Point Algorithm for Independent Component Analysis. *Neural Computation*, 9, 1483-1492. DOI: [10.1162/neco.1997.9.7.1483]
 
 
