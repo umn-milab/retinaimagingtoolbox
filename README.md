@@ -7,6 +7,8 @@
 -   [Vessel segmentation](#vessel-segmentation)
 -   [Blind source separation](#blind-source-separation)
 -   [K-means filter for spike noise suppression](#k-means-filter-for-spike-noise-suppression)
+-   [Time-course morphology analysis via control points](#time-course morphology analysis via control points)
+-   [References](#references)
 
 ## Introduction
 
