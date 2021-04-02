@@ -4,6 +4,9 @@
 
 -   [Introduction](#introduction)
 -   [Image registration](#image-registration)
+-   [Vessel segmentation](#vessel-segmentation)
+-   [Blind source separation](#blind-source-separation)
+-   [K-means filter for spike noise suppression](#k-means-filter-for-spike-noise-suppression)
 
 ## Introduction
 
@@ -22,7 +25,7 @@ In the near future, we plan to rewrite RIT into a paralell and separate full pyt
 
 [In Progress]
 
-## Vessel segementation
+## Vessel segmentation
 
 [In Progress]
 
