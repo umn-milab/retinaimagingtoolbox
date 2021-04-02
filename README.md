@@ -9,6 +9,7 @@
 -   [Blind source separation](#blind-source-separation)
 -   [K-means filter for spike noise suppression](#k-means-filter-for-spike-noise-suppression)
 -   [Time-course morphology analysis via control points](#time-course-morphology-analysis-via-control-points)
+-   [Automated pipelines](#automated-pipelines)
 -   [References](#references)
 
 ## Introduction
@@ -41,6 +42,10 @@ In the near future, we plan to rewrite RIT into a paralell and separate full pyt
 [In Progress]
 
 ## Time-course morphology analysis via control points
+
+[In Progress]
+
+## Automated pipelines
 
 [In Progress]
 
