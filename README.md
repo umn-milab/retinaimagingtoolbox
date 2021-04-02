@@ -1,5 +1,11 @@
 # Retina Imaging Toolbox (RIT)
 
+## Content
+
+-   [Introduction](#introduction)
+
+## Introduction
+
 **ANYONE CAN CONTRIBUTE** to the open-source MATLAB/Octave software library for **automated dynamic or static retina image analysis**. The library includes:
 - import of standard video file formats (e.g. .avi, .mp4, .mkv, etc.) into 3D double array variable 
 - image registration `(Kolar et al. 2016)`
