@@ -1,14 +1,5 @@
-function out = rit_ImageNorm( x, meze )
-%
-% out = ImageNorm( x [,meze] )
-%
-% 	Pro jeden vstupni parametr, funkce provede normalizaci 
-% matice (vektoru) x.
-% 	Druhy vstupni parametr je vektor [a b], ktery rika do 
-% jakeho intervalu se maji hodnoty matice x transformovat.
-% 	Musi platit, ze a<b !!!
-%
-% 	Radim Kolar 31.8.1999   9:20 
+function Topt = rit_ThresholdKittler(obr)
+% Looking for optimal threshold based on Kittler thresholding
 %
 %
 % IMPLEMENTED BY:
@@ -43,37 +34,30 @@ function out = rit_ImageNorm( x, meze )
 % 
 % Papers related to specific RIT functions are listed in the cite_papers.txt file.
 
-    if nargin==1 % normalizace od 0 do 1   
+    obr = double(obr);
 
-       maxi = max( max( x ) );
-        mini = min( min( x ) );
-        out = (x-mini)/(maxi-mini);
+    % obr=obr*1/max(max(obr));
+    % obr(obr<0.5*mean(mean(obr))) = mean(mean(obr));
+    % obr = 1 - obr;
+    h = imhist(obr);
 
-    elseif nargin==2 % normalizace od meze(1) do meze(2)
+    p = h/sum(h);
+    p(1) = 0;
 
-       maxi = max( max( x ) );
-       mini = min( min( x ) );
-       if maxi==mini 
-          out = zeros( size(x) );
-       else   
-          out = (x-mini)/(maxi-mini);
-       end   
+    for i = 1:length(p)
+        P = sum(p(1:i));
+        mf = sum([1:i].*p(1:i)');
+        sigma_f = sqrt(sum((([1:i]-mf).^2) .*p(1:i)'));
+    %     sf = std(p(1:i));
+        mb = sum([i+1:length(p)].*p(i+1:end)');
+        sigma_b = sqrt(sum(([i+1:length(p)]-mf).^2 .* p(i+1:end)'));
+    %     sb = std(p(i+1:end));
+    %     T(i) = P * log(sf) + (1-P) * log(sb) - P*log(P) - (1-P)* log(1-P);
+        T(i) = P * log(sigma_f) + (1-P) * log(sigma_b) - P*log(P) - (1-P)* log(1-P);
+    end
 
-       if meze(1)<0 && meze(2)>0 % pro kladnou a zapornou mez
-           out = ( meze(2) - meze(1) )*out;      
-          out = out - abs(meze(1));
-
-       elseif meze(1)>=0 && meze(2)>0 % pro kladne meze
-           out = ( meze(2) - meze(1) )*out;      
-          out = out + abs(meze(1));
-
-       elseif meze(1)<0 && meze(2)<0 % pro zaporne meze
-           out = ( abs(meze(1)) - abs(meze(2)) )*out;      
-          out = out - abs(meze(1));      
-
-       end % if
-
-    end % if 
-
-    clear maxi mini
+    Topt = (find(T == min(T(T>-inf))))/256;
+    Topt=Topt(end);
 end
+
+

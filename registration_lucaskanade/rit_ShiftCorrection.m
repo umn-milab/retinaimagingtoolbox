@@ -1,14 +1,4 @@
-function out = rit_ImageNorm( x, meze )
-%
-% out = ImageNorm( x [,meze] )
-%
-% 	Pro jeden vstupni parametr, funkce provede normalizaci 
-% matice (vektoru) x.
-% 	Druhy vstupni parametr je vektor [a b], ktery rika do 
-% jakeho intervalu se maji hodnoty matice x transformovat.
-% 	Musi platit, ze a<b !!!
-%
-% 	Radim Kolar 31.8.1999   9:20 
+function out = rit_ShiftCorrection(im, r_x, c_x )
 %
 %
 % IMPLEMENTED BY:
@@ -43,37 +33,56 @@ function out = rit_ImageNorm( x, meze )
 % 
 % Papers related to specific RIT functions are listed in the cite_papers.txt file.
 
-    if nargin==1 % normalizace od 0 do 1   
+    [nr,nc] = size( im );
 
-       maxi = max( max( x ) );
-        mini = min( min( x ) );
-        out = (x-mini)/(maxi-mini);
+    out = zeros( nr, nc );
 
-    elseif nargin==2 % normalizace od meze(1) do meze(2)
+    if -c_x<0
+        od_c_mov = c_x+1;
+        do_c_mov = nc;
+        c_pridat_dozadu = abs(c_x);
+        c_pridat_dopredu = 0;    
+    %     od_c_ref = 1;
+    %     do_c_ref = nc-c_x;
+    elseif -c_x>0
+    %     od_c_ref = -c_x;
+    %     do_c_ref = nc;
+        od_c_mov = 1;
+        do_c_mov = nc+c_x;
+        c_pridat_dopredu = abs( c_x );
+        c_pridat_dozadu = 0;
+    else
+    %     od_c_ref = 1;
+    %     do_c_ref = nc;
+        od_c_mov = 1;
+        do_c_mov = nc;    
+        c_pridat_dopredu = 0;
+        c_pridat_dozadu = 0;     
+    end
 
-       maxi = max( max( x ) );
-       mini = min( min( x ) );
-       if maxi==mini 
-          out = zeros( size(x) );
-       else   
-          out = (x-mini)/(maxi-mini);
-       end   
+    if -r_x<0
+        od_r_mov = r_x+1;
+        do_r_mov = nr;
+        r_pridat_dozadu = abs(r_x);
+        r_pridat_dopredu = 0;
+    %     od_r_ref = 1;
+    %     do_r_ref = nr-r_x;
+    elseif -r_x>0
+    %     od_r_ref = -r_x;
+    %     do_r_ref = nr;
+        od_r_mov = 1;
+        do_r_mov = nr+r_x;
+        r_pridat_dopredu = abs( r_x );    
+        r_pridat_dozadu = 0;        
+    else
+    %     od_r_ref = 1;
+    %     do_r_ref = nr;
+        od_r_mov = 1;
+        do_r_mov = nr;
+        r_pridat_dopredu = 0;
+        r_pridat_dozadu = 0; 
+    end
 
-       if meze(1)<0 && meze(2)>0 % pro kladnou a zapornou mez
-           out = ( meze(2) - meze(1) )*out;      
-          out = out - abs(meze(1));
-
-       elseif meze(1)>=0 && meze(2)>0 % pro kladne meze
-           out = ( meze(2) - meze(1) )*out;      
-          out = out + abs(meze(1));
-
-       elseif meze(1)<0 && meze(2)<0 % pro zaporne meze
-           out = ( abs(meze(1)) - abs(meze(2)) )*out;      
-          out = out - abs(meze(1));      
-
-       end % if
-
-    end % if 
-
-    clear maxi mini
+    out(r_pridat_dopredu+1 : end-r_pridat_dozadu, ...
+        c_pridat_dopredu+1 : end-c_pridat_dozadu ) = im(od_r_mov:do_r_mov, od_c_mov:do_c_mov);
 end

@@ -1,14 +1,4 @@
-function out = rit_ImageNorm( x, meze )
-%
-% out = ImageNorm( x [,meze] )
-%
-% 	Pro jeden vstupni parametr, funkce provede normalizaci 
-% matice (vektoru) x.
-% 	Druhy vstupni parametr je vektor [a b], ktery rika do 
-% jakeho intervalu se maji hodnoty matice x transformovat.
-% 	Musi platit, ze a<b !!!
-%
-% 	Radim Kolar 31.8.1999   9:20 
+function out = rit_SolveRotationTranslation( XY, xy, method )
 %
 %
 % IMPLEMENTED BY:
@@ -43,37 +33,43 @@ function out = rit_ImageNorm( x, meze )
 % 
 % Papers related to specific RIT functions are listed in the cite_papers.txt file.
 
-    if nargin==1 % normalizace od 0 do 1   
+    if nargin==2
+        [nr, ~] = size( XY );
 
-       maxi = max( max( x ) );
-        mini = min( min( x ) );
-        out = (x-mini)/(maxi-mini);
+        M = zeros( 3, 3 );
+        b = zeros( 3, 1 );
 
-    elseif nargin==2 % normalizace od meze(1) do meze(2)
+        for ii = 1:nr
+            M = M +  [-1, 0, xy(ii,2); 0, -1, -xy(ii,1); -xy(ii,2), xy(ii,1), xy(ii,1)^2 + xy(ii,2)^2 ];
+            b = b + [XY(ii,1)-xy(ii,1); XY(ii,2)-xy(ii,2); (XY(ii,1)-xy(ii,1))*xy(ii,2) - (XY(ii,2)-xy(ii,2))*xy(ii,1)];
+        end
 
-       maxi = max( max( x ) );
-       mini = min( min( x ) );
-       if maxi==mini 
-          out = zeros( size(x) );
-       else   
-          out = (x-mini)/(maxi-mini);
-       end   
+        out = M\b;
 
-       if meze(1)<0 && meze(2)>0 % pro kladnou a zapornou mez
-           out = ( meze(2) - meze(1) )*out;      
-          out = out - abs(meze(1));
+    else
 
-       elseif meze(1)>=0 && meze(2)>0 % pro kladne meze
-           out = ( meze(2) - meze(1) )*out;      
-          out = out + abs(meze(1));
+        im = XY;
 
-       elseif meze(1)<0 && meze(2)<0 % pro zaporne meze
-           out = ( abs(meze(1)) - abs(meze(2)) )*out;      
-          out = out - abs(meze(1));      
+        xt = xy(1);
+        yt = xy(2);
+        fi = xy(3);
 
-       end % if
+        [yi,xi] = ndgrid(1:1:size(im,1),1:1:size(im,2) );
+        xxi = xi*cos(fi) - yi*sin(fi) + xt;
+        yyi = xi*sin(fi) + yi*cos(fi) + yt;
 
-    end % if 
+        if size(im,3)==1
+            out = interp2( xi, yi, double(im), xxi, yyi, method);
+        else
+            out(:,:,1) = interp2( xi, yi, double(im(:,:,1)), xxi, yyi, method);
+            out(:,:,2) = interp2( xi, yi, double(im(:,:,2)), xxi, yyi, method);
+            out(:,:,3) = interp2( xi, yi, double(im(:,:,3)), xxi, yyi, method);
+    %         out(:,:,1) = interp2( xi, yi, (im(:,:,1)), xxi, yyi, method);
+    %         out(:,:,2) = interp2( xi, yi, (im(:,:,2)), xxi, yyi, method);
+    %         out(:,:,3) = interp2( xi, yi, (im(:,:,3)), xxi, yyi, method);
+        end
 
-    clear maxi mini
+        ind = find( isnan( out) );
+        out( ind ) = 0;
+    end
 end

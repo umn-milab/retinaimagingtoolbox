@@ -1,14 +1,5 @@
-function out = rit_ImageNorm( x, meze )
-%
-% out = ImageNorm( x [,meze] )
-%
-% 	Pro jeden vstupni parametr, funkce provede normalizaci 
-% matice (vektoru) x.
-% 	Druhy vstupni parametr je vektor [a b], ktery rika do 
-% jakeho intervalu se maji hodnoty matice x transformovat.
-% 	Musi platit, ze a<b !!!
-%
-% 	Radim Kolar 31.8.1999   9:20 
+function [u, v] = rit_LucasKanade(im1, im2, windowSize, ind, G, dG)
+%Lucas Kanade algorithm without pyramidal extension
 %
 %
 % IMPLEMENTED BY:
@@ -43,37 +34,31 @@ function out = rit_ImageNorm( x, meze )
 % 
 % Papers related to specific RIT functions are listed in the cite_papers.txt file.
 
-    if nargin==1 % normalizace od 0 do 1   
+    %%
+    [fx, fy, ft] = rit_ComputeDerivatives(im1, im2, G, dG );
 
-       maxi = max( max( x ) );
-        mini = min( min( x ) );
-        out = (x-mini)/(maxi-mini);
+    halfWindow = floor(windowSize/2);   
 
-    elseif nargin==2 % normalizace od meze(1) do meze(2)
+    % if nargin==4
+    % size(ind,1)
+    for ii = 1:size(ind,1)
 
-       maxi = max( max( x ) );
-       mini = min( min( x ) );
-       if maxi==mini 
-          out = zeros( size(x) );
-       else   
-          out = (x-mini)/(maxi-mini);
-       end   
+          curFx = fx(ind(ii,1)-halfWindow:ind(ii,1)+halfWindow, ind(ii,2)-halfWindow:ind(ii,2)+halfWindow);
+          curFy = fy(ind(ii,1)-halfWindow:ind(ii,1)+halfWindow,ind(ii,2)-halfWindow:ind(ii,2)+halfWindow);
+          curFt = ft(ind(ii,1)-halfWindow:ind(ii,1)+halfWindow, ind(ii,2)-halfWindow:ind(ii,2)+halfWindow);
 
-       if meze(1)<0 && meze(2)>0 % pro kladnou a zapornou mez
-           out = ( meze(2) - meze(1) )*out;      
-          out = out - abs(meze(1));
+          curFx = curFx(:);
+          curFy = curFy(:);
+          curFt = curFt(:);
 
-       elseif meze(1)>=0 && meze(2)>0 % pro kladne meze
-           out = ( meze(2) - meze(1) )*out;      
-          out = out + abs(meze(1));
+          A = [sum(curFx.^2), sum(curFx.*curFy);...
+                  sum(curFx.*curFy),  sum(curFy.^2)]; 
 
-       elseif meze(1)<0 && meze(2)<0 % pro zaporne meze
-           out = ( abs(meze(1)) - abs(meze(2)) )*out;      
-          out = out - abs(meze(1));      
+          b = [sum(curFt.*curFx); sum(curFt.*curFy)]; 
 
-       end % if
+          U = A\b;
 
-    end % if 
-
-    clear maxi mini
+          u(ii,1) = U(1);
+          v(ii,1) = U(2);        
+    end
 end
