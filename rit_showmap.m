@@ -1,11 +1,5 @@
 function [output] = rit_showmap(background, overlay_image, treshold, varargin)
 %HELP
-
-%   CITE AS:
-%   Labounkova I, Labounek R, Nestrasil I, Odstrcilik J, Tornow R P, Kolar R, (2021)
-%   "Blind Source Separation of Retinal Pulsatile Patterns in Optic Nerve Head
-%   Video-Recordings." IEEE Transactions on Medical Imaging, 40(3), 852-864.
-%
 % Copyright 2020-2021 Ivana Labounkova(1,2), Rene Labounek(2), Igor Nestrasil(2,3),
 %     Jan Odstrcilik(1), Ralf P. Tornow(4), Radim Kolar(1)
 % (1) Department of Biomedical Engineering, Brno University of Technology, Brno, Czech Republic
@@ -28,7 +22,6 @@ function [output] = rit_showmap(background, overlay_image, treshold, varargin)
 % along with Retina Imaging Toolbox.  If not, see <https://www.gnu.org/licenses/>.
 % 
 % Papers related to specific RIT functions are listed in the cite_papers.txt file.
-
 %%
    defaultAlpha = 0.9;
    defaultMask = ones(size(background));
@@ -39,11 +32,11 @@ function [output] = rit_showmap(background, overlay_image, treshold, varargin)
    p = inputParser;
    
    addRequired(p,'background', @(x) isnumeric(x) && size(x,1)>1 && size(x,2)>1);
-   addRequired(p,'overlay_image', @(x) isnumeric(x) && size(x,1)>1 && size(x,2)>1);
+   addRequired(p,'overlay_image', @(x) isnumeric(x) && size(x,1)==size(background,1) && size(x,2)==size(background,2));
    addRequired(p,'treshold', @(x) isnumeric(x) && isscalar(x));
    
    addOptional(p,'Alpha', defaultAlpha, @(x) isnumeric(x) && isscalar(x) && (x > 0 && x <= 1));
-   addOptional(p,'Mask', defaultMask, @(x) isnumeric(x) && size(x,1)>1 && size(x,2)>1 && isequal(unique(x), [0,1]));
+   addOptional(p,'Mask', defaultMask, @(x) size(x,1)==size(background,1) && size(x,2)==size(background,2) && ismember([0],ismember((double(x(:)))', [0,1]))==0);
    
    addParameter(p,'Scale',defaultScale,@(x) any(validatestring(x,expectedScale)));
     
@@ -132,7 +125,7 @@ function [output] = rit_showmap(background, overlay_image, treshold, varargin)
 
     component_transp = imshow(component_data); set(component_transp, 'Alphadata', 0.01); colormap jet;
 
-    h_bar = colorbar('south', 'AxisLocation', 'out','Ticks',vls,'TickLabels',vals); abc = get(h_bar, 'Position'); set(h_bar, 'Position', [abc(1)-0.0 abc(2)-0.08 abc(3) abc(4)*5/6]); 
+    h_bar = colorbar('south', 'AxisLocation', 'out','Ticks',vls,'TickLabels',vals); abc = get(h_bar, 'Position'); set(h_bar, 'Position', [abc(1)-0.0 abc(2)-0.08 abc(3) abc(4)*5/6]);
     caxis([vls(1,1) vls(1,end)])                
 
 end
