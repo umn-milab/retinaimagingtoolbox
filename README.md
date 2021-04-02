@@ -3,6 +3,7 @@
 ## Content
 
 -   [Introduction](#introduction)
+-   [Image registration](#image registration)
 
 ## Introduction
 
