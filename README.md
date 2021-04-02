@@ -50,6 +50,6 @@ Labounkova, I., Labounek, R., Nestrasil, I., Odstrcilik, J., Tornow, R.P., & Kol
 
 Labounkova, I., Labounek, R., Odstrcilik, J., Hracho, M., Nestrasil, I., Tornow, R. P., & Kolar, R. (2019). Blind Source Separation of Different Retinal Pulsatile Patterns from Simultaneous Long-term Binocular Ophthalmoscopic Video-records. In *41st Annual International Conference of the IEEE Engineering in Medicine and Biology Society*, 4729-4732. DOI: [10.1109/EMBC.2019.8857560](https://ieeexplore.ieee.org/document/8857560)
 
-Hyvarinen, A., Oja, E. (1997). A Fast Fixed-Point Algorithm for Independent Component Analysis. *Neural Computation*, 9, 1483-1492. DOI: [10.1162/neco.1997.9.7.1483]
+Hyvarinen, A., Oja, E. (1997). A Fast Fixed-Point Algorithm for Independent Component Analysis. *Neural Computation*, 9, 1483-1492. DOI: [10.1162/neco.1997.9.7.1483](https://direct.mit.edu/neco/article/9/7/1483/6120/A-Fast-Fixed-Point-Algorithm-for-Independent)
 
 
