@@ -1,0 +1,16 @@
+RIT RELATED PAPERS:
+
+rit_registration_lucaskanade:
+
+Kolar R, Tornow R P, Odstrcilik J, Liberdova I (2016) "Registration of retinal sequences
+from new video-ophthalmoscopic camera." Biomedical Engineering Online, 15(1), 1-17.
+
+rit_bss; rit_control_points; rit_kmeans_filt:
+
+Labounkova I, Labounek R, Nestrasil I, Odstrcilik J, Tornow R P, Kolar R, (2021)
+"Blind Source Separation of Retinal Pulsatile Patterns in Optic Nerve Head
+Video-Recordings." IEEE Transactions on Medical Imaging, 40(3), 852-864.
+
+fastica algorithm incorporated in the rit_bss:
+Hyvarinen A and Oja E (1997) "A Fast Fixed-Point Alogrithm for Independent
+Component Analysis." Neural Computation, 9(7), 1483-1492.
