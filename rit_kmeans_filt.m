@@ -65,4 +65,5 @@ function inty = rit_kmeans_filt(input,posnon)
 
     x = 1:size(grd_km);
     inty = interp1(x(grd_km==0),input(grd_km==0),x,'spline');
+    inty(isnan(inty))=input(isnan(inty));
 end
