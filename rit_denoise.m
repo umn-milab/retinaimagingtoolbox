@@ -1,4 +1,4 @@
-function video_denoised = rit_denoise(videoin,ncomponents,visualization,nframes,fps,save_dir,video_name)
+function video_denoised = rit_denoise(videoin,ncomponents,visualization,nframes,fps,save_dir,video_name,precision)
 %RIT_DENOISE
 %
 % Help
@@ -7,10 +7,17 @@ function video_denoised = rit_denoise(videoin,ncomponents,visualization,nframes,
 % image_sequence = zeros(height,width, Nframes);
 height = size(videoin,1);
 width = size(videoin,2);
-image_sequence_spec = single(zeros(2*height*width, nframes));
+if strcmp(precision,'single')
+    image_sequence_spec = single(zeros(2*height*width, nframes));
+else
+    image_sequence_spec = zeros(2*height*width, nframes);
+end
 frame_mean=zeros(nframes,1);
 for ind = 1:nframes
-    image = single(videoin(:,:,ind));
+    image = videoin(:,:,ind);
+    if strcmp(precision,'single')
+        image = single(image);
+    end
 %     image = image(:,:,1);
 %     image = conv2(image, ones(3)/9, 'same');  % convolution
 %     image_sequence(:,:,ind) = fft2(image);
@@ -69,7 +76,7 @@ if visualization == 1
 end
 %% Denoised image reconstruction
 video_denoised = zeros(height,width,nframes);
-v = VideoWriter(fullfile(save_dir,[video_name(1:end-4) '_denoised.avi']), 'Uncompressed AVI');
+v = VideoWriter(fullfile(save_dir,[video_name(1:end-4) '_denoised_components_' num2str(ncomponents) '.avi']), 'Uncompressed AVI');
 v.FrameRate = fps;
 open(v)
 for ind = 1:nframes
@@ -81,6 +88,12 @@ for ind = 1:nframes
     spec = spec_real + 1i*spec_imag;
     
     spec = real(ifft2(spec)) + frame_mean(ind);
+    if min(spec(:))<0
+        spec = spec + abs(min(spec(:)));
+    end
+    if max(spec(:)) > 1
+        spec = spec ./ max(spec(:));
+    end
 %     spec = spec/255;
 %     image_sequence(:,:,ind) = spec;
     writeVideo(v, spec);
