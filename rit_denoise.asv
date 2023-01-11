@@ -7,11 +7,11 @@ function video_denoised = rit_denoise(videoin,ncomponents,visualization,nframes,
 % image_sequence = zeros(height,width, Nframes);
 height = size(videoin,1);
 width = size(videoin,2);
-image_sequence_spec = single(zeros(2*height*width, nframes));
+image_sequence_spec = zeros(2*height*width, nframes);
 frame_mean=zeros(nframes,1);
 for ind = 1:nframes
-    image = single(videoin(:,:,ind));
-%     image = image(:,:,1);
+    image = videoin(:,:,ind);
+    image = image(:,:,1);
 %     image = conv2(image, ones(3)/9, 'same');  % convolution
 %     image_sequence(:,:,ind) = fft2(image);
     frame_mean(ind) = mean(image(:));
@@ -23,7 +23,6 @@ for ind = 1:nframes
     
     image_sequence_spec(:,ind) = [spec_real; spec_imag]';
 end
-clear videoin
 %% PCA denoising
 [coeff_reduced,score,~,~,explained,~] = pca(image_sequence_spec);
 explained_cumulative = cumsum(explained);
@@ -68,7 +67,6 @@ if visualization == 1
     end
 end
 %% Denoised image reconstruction
-video_denoised = zeros(height,width,nframes);
 v = VideoWriter(fullfile(save_dir,[video_name(1:end-4) '_denoised.avi']), 'Uncompressed AVI');
 v.FrameRate = fps;
 open(v)
@@ -81,10 +79,8 @@ for ind = 1:nframes
     spec = spec_real + 1i*spec_imag;
     
     spec = real(ifft2(spec)) + frame_mean(ind);
-%     spec = spec/255;
+    spec = spec/255;
 %     image_sequence(:,:,ind) = spec;
     writeVideo(v, spec);
-    
-    video_denoised(:,:,ind) = spec;
 end
 close(v)
