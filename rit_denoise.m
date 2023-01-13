@@ -1,4 +1,4 @@
-function video_denoised = rit_denoise(videoin,ncomponents,visualization,nframes,fps,save_dir,video_name,precision)
+function [video_denoised, st] = rit_denoise(videoin,sratio,visualization,nframes,fps,save_dir,video_name,precision)
 %RIT_DENOISE
 %
 % Help
@@ -32,21 +32,30 @@ for ind = 1:nframes
 end
 clear videoin
 %% PCA denoising
-[coeff_reduced,score,~,~,explained,~] = pca(image_sequence_spec);
-explained_cumulative = cumsum(explained);
+[coeff_reduced,score,~,~,st.explained,~] = pca(image_sequence_spec);
+st.explained_cumulative = cumsum(st.explained);
 % PCA_com_image = reshape(score,[],1);
-coeff_reduced(:,ncomponents+1:end) = 0;
+score_ratio = zeros(1,size(score,2));
+for ind=1:size(score,2)
+    k1 = mean(abs(score(10:round(0.0195*size(score,1)),ind)));
+    k2 = mean(abs( score(round(0.1948*size(score,1)):round(0.3247*size(score,1)),ind) ));
+    score_ratio(1,ind) = k1/k2;
+end
+st.score_ratio = score_ratio';
+st.sratio_thr = sratio;
+st.ncomponents = find(score_ratio<sratio,1,'first')-1;
+coeff_reduced(:,st.ncomponents+1:end) = 0;
 % PCA_com_image = PCA_com_image(:,:,1:ncomponents);
 % PCA_coeff = PCA_coeff(:,1:ncomponents);
 image_sequence_spec=score*coeff_reduced';
 %% VISUALIZATION
 if visualization == 1
     figure(1)
-    plot(explained_cumulative,'LineWidth',3)
+    plot(st.explained_cumulative,'LineWidth',3)
     xlabel('Number of components')
     ylabel('Explained variability')
     title('Variance of retinal video spectra')
-    axis([0 size(explained_cumulative,1) min(explained_cumulative) 100])
+    axis([0 size(st.explained_cumulative,1) min(st.explained_cumulative) 100])
     grid on
     set(gca,'FontSize',14,'LineWidth',2)
     
@@ -76,7 +85,7 @@ if visualization == 1
 end
 %% Denoised image reconstruction
 video_denoised = zeros(height,width,nframes);
-v = VideoWriter(fullfile(save_dir,[video_name(1:end-4) '_denoised_components_' num2str(ncomponents) '.avi']), 'Uncompressed AVI');
+v = VideoWriter(fullfile(save_dir,[video_name(1:end-4) '_denoised.avi']), 'Uncompressed AVI');
 v.FrameRate = fps;
 open(v)
 for ind = 1:nframes
@@ -95,9 +104,10 @@ for ind = 1:nframes
         spec = spec ./ max(spec(:));
     end
 %     spec = spec/255;
-%     image_sequence(:,:,ind) = spec;
+%     spec = uint16(spec .* (2^16-1));
     writeVideo(v, spec);
     
     video_denoised(:,:,ind) = spec;
 end
 close(v)
+save(fullfile(save_dir,[video_name(1:end-4) '_denoised.mat']),'st','-v7.3');

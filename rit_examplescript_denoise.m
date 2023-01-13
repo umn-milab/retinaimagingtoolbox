@@ -10,11 +10,11 @@ save_dir = '/home/range1-raid1/labounek/data-on-porto/retina_imaging/results/den
 % video_dir = '/mnt/ganglium-raid1/data/ivanka/retina_imaging/crop/sub-0001/ses-01';
 % video_name = 'sub-0001_ses-01_pos90_run1_06_01_2023_15_52_46_crop_1-661.mkv';
 
-ncomponents=75;
+sratio=1.25;
 visualization=1;
 precision = 'double';
 
 video_file=fullfile(video_dir, video_name);
 % v = VideoReader(video_file);
 [video, fps, nframes] = rit_videoload(video_file, 'gray');
-video_denoised = rit_denoise(video,ncomponents,visualization,nframes,fps,save_dir,video_name,precision);
+[video_denoised, denoise_stats] = rit_denoise(video,sratio,visualization,nframes,fps,save_dir,video_name,precision);
