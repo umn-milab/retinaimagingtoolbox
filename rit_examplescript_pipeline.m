@@ -24,22 +24,20 @@ clear all;
 close all;
 clc;
 %% INPUT VIDEO
-% dirname = 'C:\Users\User\Videos'; %Folder path where the input video is stored.
-% fname = 'RetinaVideo.avi'; % Input video filename.
-dirname = '/home/range1-raid1/labounek/data-on-porto/retina_imaging/crop/sub-0001/ses-01'; %Folder path where the input video is stored.
-fname = 'sub-0001_ses-01_pos90_run1_06_01_2023_15_52_46_crop_1-661.avi'; % Input video filename.
+dirname = 'C:\Users\User\Videos'; %Folder path where the input video is stored.
+fname = 'RetinaVideo.avi'; % Input video filename.
 % Example of non-aligned input video (RetinaVideo.avi) you can download at: https://github.com/ivanalabounkova/retinaimagingtoolbox-data
 fnamepath = fullfile(dirname, fname);
 %% RESULT DIRECTORY
-save_dir = '/home/range1-raid1/labounek/data-on-porto/retina_imaging/results/denoise/sub-0001/ses-01';
+save_dir = 'C:\Users\User\Results'; % Folder path where the results are stored.
 %% RIT INITIALIZATION
 % You need to have setup the retinaimagingtoolbox folder in you MATLAB path
 % to make basic RIT command such as rit_defaults to work.
 % HOME -> Set Path -> Add Folder -> Find the folder at the HDD and add it -> Save (to remember to set path after MATLAB Restart)
 rit_defaults % It is enough to execute rit_defaults just once per one MATLAB instance
 %% DENOISING
-sratio=1.25; % Ratio between amplitude of the image signal and amplitude of estimated noise. The value defines float index of the first principal component
-             % which will be zeroed. For the value 1.25, last preserved component will have amplitude of the signal image about 25% higher than amplitude of
+sratio=1.40; % Ratio between amplitude of the image signal and amplitude of estimated noise. The value defines float index of the first principal component
+             % which will be zeroed. For the value 1.25, last preserved component will have amplitude of the signal image about 40% higher than amplitude of
              % the estimated noise,
 visualization=0; % set to value 1, if you want to see example of components in spectral domain (first half real values, second half imaginery values)
 precision = 'double';
