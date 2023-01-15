@@ -37,4 +37,4 @@ precision = 'double';
 
 video_file=fullfile(video_dir, video_name);
 [video, fps, nframes] = rit_videoload(video_file, 'gray');
-[video_denoised, denoise_stats] = rit_denoise(video,sratio,visualization,nframes,fps,save_dir,video_name,precision);
+[video_denoised, denoise_stats] = rit_denoise(video,sratio,visualization,nframes,fps,save_dir,video_name,precision,video_file);

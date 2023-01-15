@@ -1,10 +1,12 @@
-function [video_denoised, st] = rit_denoise(videoin,sratio,visualization,nframes,fps,save_dir,video_name,precision)
+function rit_denoise(videoin,sratio,visualization,nframes,fps,save_dir,video_name,precision,video_file)
 %RIT_DENOISE
 %
 % Help
 
 %% Video transfer into spectral domain
-% image_sequence = zeros(height,width, Nframes);
+disp([datestr(datetime) ': Spectral PCA denoising has started for:'])
+disp(video_file)
+
 height = size(videoin,1);
 width = size(videoin,2);
 if strcmp(precision,'single')
@@ -18,23 +20,18 @@ for ind = 1:nframes
     if strcmp(precision,'single')
         image = single(image);
     end
-%     image = image(:,:,1);
-%     image = conv2(image, ones(3)/9, 'same');  % convolution
-%     image_sequence(:,:,ind) = fft2(image);
     frame_mean(ind) = mean(image(:));
     spec = fft2(image-frame_mean(ind));
     spec_real = real(spec);
     spec_imag = imag(spec);    
     spec_real = spec_real(:);
     spec_imag = spec_imag(:);
-    
     image_sequence_spec(:,ind) = [spec_real; spec_imag]';
 end
 clear videoin
 %% PCA denoising
 [coeff_reduced,score,~,~,st.explained,~] = pca(image_sequence_spec);
 st.explained_cumulative = cumsum(st.explained);
-% PCA_com_image = reshape(score,[],1);
 score_ratio = zeros(1,size(score,2));
 for ind=1:size(score,2)
     k1 = mean(abs(score(10:round(0.0195*size(score,1)),ind)));
@@ -45,8 +42,6 @@ st.score_ratio = score_ratio';
 st.sratio_thr = sratio;
 st.ncomponents = find(score_ratio<sratio,1,'first')-1;
 coeff_reduced(:,st.ncomponents+1:end) = 0;
-% PCA_com_image = PCA_com_image(:,:,1:ncomponents);
-% PCA_coeff = PCA_coeff(:,1:ncomponents);
 image_sequence_spec=score*coeff_reduced';
 %% VISUALIZATION
 if visualization == 1
@@ -84,7 +79,6 @@ if visualization == 1
     end
 end
 %% Denoised image reconstruction
-video_denoised = zeros(height,width,nframes);
 v = VideoWriter(fullfile(save_dir,[video_name(1:end-4) '_denoised.avi']), 'Uncompressed AVI');
 v.FrameRate = fps;
 open(v)
@@ -104,10 +98,13 @@ for ind = 1:nframes
         spec = spec ./ max(spec(:));
     end
 %     spec = spec/255;
-%     spec = uint16(spec .* (2^16-1));
     writeVideo(v, spec);
-    
-    video_denoised(:,:,ind) = spec;
 end
 close(v)
 save(fullfile(save_dir,[video_name(1:end-4) '_denoised.mat']),'st','-v7.3');
+
+disp(['Denoising stats are stored as:'])
+disp(fullfile(save_dir,[video_name(1:end-4) '_denoised.mat']))
+disp(['Denoised video is stored as:'])
+disp(fullfile(save_dir,[video_name(1:end-4) '_denoised.avi']))
+disp([datestr(datetime) ': Spectral PCA denoising has finished.'])
