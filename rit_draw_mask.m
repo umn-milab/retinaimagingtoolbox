@@ -1,4 +1,4 @@
-function mask = rit_draw_mask(im,fnamepath,ttle)
+function [mask, xy_positions] = rit_draw_mask(im,fnamepath,ttle)
 %RIT_DRAW_MASK Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -11,9 +11,10 @@ function mask = rit_draw_mask(im,fnamepath,ttle)
 
     % To get image from positions
     mask = roipoly(size(im,1), size(im,2), positions.Position(:,1), positions.Position(:,2));
+    xy_positions = [positions.Position(:,1) positions.Position(:,2)];
     
     % Save results
-    save([fnamepath '.mat'], 'positions','mask');
+    save([fnamepath '.mat'], 'xy_positions','mask');
     imwrite(mask,[fnamepath '.png'])
     close(h.fig)
 end
