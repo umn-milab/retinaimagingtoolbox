@@ -104,10 +104,10 @@ function  T_transform = rit_LucasKanadeRigidRegistration(aviobj, aviobjOut,...
 
     % Preprocessing of the reference image 
     tmpx1 = double( adapthisteq(uint8(x1)) );
-    h = waitbar(0,'The 2nd stage of registration is running. Please wait...');
+%     h = waitbar(0,'The 2nd stage of registration is running. Please wait...');
 
     for ii = FrameList
-        waitbar(ii/nFrames, h)
+%         waitbar(ii/nFrames, h)
 
         % Read next frame to register
         x2 = read(aviobj, ii);
@@ -162,5 +162,5 @@ function  T_transform = rit_LucasKanadeRigidRegistration(aviobj, aviobjOut,...
             flag = 0;
         end        
     end
-    close(h);
+%     close(h);
 end

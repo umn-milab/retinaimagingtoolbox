@@ -63,10 +63,10 @@ function shift_phase = rit_PhaseCorrelation( aviobj , aviobjOut, RefFrame, ignor
     FrameList = setdiff( FrameList, RefFrame );
     flag = 1; % flag to hold if reference frame has been written into output video
 
-    h = waitbar(0,'The 1st stage of registration is running. Please wait...');
+%     h = waitbar(0,'The 1st stage of registration is running. Please wait...');
 
     for ii = FrameList
-        waitbar(ii/nFrames, h);
+%         waitbar(ii/nFrames, h);
 
         % Read frame
         x2 = read(aviobj, ii);
@@ -120,7 +120,7 @@ function shift_phase = rit_PhaseCorrelation( aviobj , aviobjOut, RefFrame, ignor
     shift_phase(:,RefFrame) = [0;0];
     
     % Close and return parameters
-    close(h) 
+%     close(h) 
 end
 
 

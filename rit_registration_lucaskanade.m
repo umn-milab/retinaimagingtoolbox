@@ -86,9 +86,10 @@ function rit_registration_lucaskanade(fnamepath, mask, index_for_reference_frame
     %% Open/Create AVI to write result of Phase Correlation
     fnamepath2 = [ fnamepath(1:end-4) '_phase.avi'];
 
-    aviobjPC = VideoWriter(fnamepath2, 'Motion JPEG AVI');
-    aviobjPC.Quality = 100;
-    aviobjPC.VideoCompressionMethod;
+%     aviobjPC = VideoWriter(fnamepath2, 'Motion JPEG AVI');
+%     aviobjPC.Quality = 100;
+%     aviobjPC.VideoCompressionMethod;
+    aviobjPC = VideoWriter(fnamepath2, 'Uncompressed AVI'); % 20230113 Rene Labounek switched video save to 'Uncompressed AVI', because reference frames were not identical before and after when the 'Motion JPEG AVI' setting above was used.
     aviobjPC.FrameRate = aviobj.FrameRate;
     %% Phase Correlation - the 1st stage of registration
     disp([datestr(datetime) ': First stage image registration via phase correlation has started.'])
@@ -102,9 +103,10 @@ function rit_registration_lucaskanade(fnamepath, mask, index_for_reference_frame
     disp([datestr(datetime) ': Second stage Lucas-Kanade image registration has started.'])
     % Open/Create AVI to write the final video
     fnamepath3 = [ fnamepath(1:end-4) '_registered.avi'];
-    aviobjLK = VideoWriter(fnamepath3, 'Motion JPEG AVI');
-    aviobjLK.Quality = 100;
-    aviobjLK.VideoCompressionMethod;
+%     aviobjLK = VideoWriter(fnamepath3, 'Motion JPEG AVI');
+%     aviobjLK.Quality = 100;
+%     aviobjLK.VideoCompressionMethod;
+    aviobjLK = VideoWriter(fnamepath3, 'Uncompressed AVI'); % 20230113 Rene Labounek switched video save to 'Uncompressed AVI', because reference frames were not identical before and after when the 'Motion JPEG AVI' setting above was used. 
     aviobjLK.FrameRate = aviobj.FrameRate;
 
     % Read AVI with phase correlation corrected video

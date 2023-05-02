@@ -1,4 +1,4 @@
-function output = rit_outlier_filt(signal, thr)
+function [output, varargout] = rit_outlier_filt(signal, thr)
 %% HELP
 % Copyright 2020-2021 Ivana Labounkova(1,2), Rene Labounek(2), Igor Nestrasil(2,3),
 %     Jan Odstrcilik(1), Ralf P. Tornow(4), Radim Kolar(1)
@@ -24,7 +24,9 @@ function output = rit_outlier_filt(signal, thr)
 % Papers related to specific RIT functions are listed in the cite_papers.txt file.
 %%
 signal_norm = (signal-mean(signal))/std(signal);
+signal_norm = abs(signal_norm);
 positions = sign(sum(abs([(signal_norm>thr)'; [diff(signal_norm>thr); 0]'; [0; diff(signal_norm>thr)]'])));
 vec = 1:length(signal_norm);
 output = interp1(vec(positions==0), signal(positions==0), vec);
 output(isnan(output))=signal(isnan(output));
+varargout{1} = positions;

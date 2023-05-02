@@ -120,7 +120,8 @@ function [PCA_coeff, PCA_com_image, ICA_com_image, ICA_coeff, explained_cumulati
     PCA_com_image = PCA_com_image(:,:,1:ncomponents);
     PCA_coeff = PCA_coeff(:,1:ncomponents);
     %% spatial ICA
-    [icasig, ICA_coeff, ~] = fastica((score*coeff_reduced')','approach','symm');
+    %[icasig, ICA_coeff, ~] = fastica((score*coeff_reduced')','approach','symm'); % 20230118 Rene Labounek commented and put raw matrix as input, as FastICA estimate its own PCA for dimensionality reduction
+    [icasig, ICA_coeff, ~] = fastica(IS_T','approach','symm','lastEig', round(2.5*ncomponents), 'numOfIC', ncomponents);
     ICA_com_image = zeros(xdim*ydim, size(icasig,1));
     ICA_com_image(BW3D(:,1:(size(icasig,1)))==1) = reshape(icasig',[],1);
     ICA_com_image = reshape(ICA_com_image, xdim, ydim, size(icasig,1));
