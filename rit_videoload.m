@@ -52,7 +52,17 @@ function [video, fps, nframes] = rit_videoload(video_file, colormode)
                 video(:,:,ind) = rgb2gray(frame);
                 ind = ind + 1;
             end
+        case 'rgb'
+            while hasFrame(v)
+                frame = readFrame(v);
+                video(:,:,:,ind) = frame;
+                ind = ind + 1;
+            end
     end
     fps = v.FrameRate;
-    nframes = size(video,3);
+    if strcmp(colormode,'rgb')
+        nframes = size(video,4);
+    else
+        nframes = size(video,3);
+    end
 end
