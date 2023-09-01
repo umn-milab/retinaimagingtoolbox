@@ -1,4 +1,4 @@
-Copyright 2020-2021 Ivana Labounkova(1,2), Rene Labounek(2), Igor Nestrasil(2,3),
+Copyright 2020-2023 Ivana Labounkova(1,2), Rene Labounek(2), Igor Nestrasil(2,3),
     Jan Odstrcilik(1), Ralf P. Tornow(4), Radim Kolar(1)
 (1) Department of Biomedical Engineering, Brno University of Technology, Brno, Czech Republic
 (2) Division of Clinical Behavioral Neuroscience, Department of Pediatrics, University of Minnesota, Minneapolis, USA
